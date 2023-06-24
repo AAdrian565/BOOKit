@@ -1,0 +1,32 @@
+:root {
+    --foreground: #5e7fb0;
+    --background: #040517;
+}
+
+body {
+    background-color: var(--background) !important;
+}
+
+.navbar {
+    font-family: 'Fira Sans', sans-serif;
+}
+.nav-item {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+nav{
+    background-color: var(--background);
+}
+
+.content {
+    color: var(--foreground);
+    background-color: var(--background);
+}
+
+.card-login {
+    background-color: var(--foreground) !important;
+    max-width: 350px;
+    margin: 0 auto;
+    margin-top: 100px;
+    color: white !important;
+}
