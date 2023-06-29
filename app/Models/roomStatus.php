@@ -21,6 +21,11 @@ class roomStatus extends Model
 
     public function bookings()
     {
-        return $this->hasOne(booking::class);
+        return $this->belongsTo(booking::class);
+    }
+
+    public function maintenanceSet()
+    {
+        return $this->hasOne(maintenance::class);
     }
 }

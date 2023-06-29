@@ -20,20 +20,6 @@
               <h4>Room</h4>
             </div>
             <div class="card-body">
-              <form action="" method="get">
-                @csrf
-                <h5>Sort By Room:</h5>
-                <div class="dropdown d-inline ">
-                  <button class="mb-2 btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-bookmark"></i> Rooms
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a href="{{ route('Booking.index') }}" class="dropdown-item">ALL</a>
-                      @foreach ($data2 as $index =>$item)
-                      <a href="{{ route('Booking.index',['RoomNumber' => $item->id]) }}" class="dropdown-item">{{ $item->Name }}</a>              
-                      @endforeach
-                  </div>
-                </div>
-              </form>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <tr>
@@ -50,15 +36,15 @@
                   @foreach ($data as $index => $item )
                   <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $item->roomAvail->Name }}</td>
+                    <td>{{ $item->roomSettings->Room_id }}</td>
                     <td>{{ $item->Name }}</td>
                     <td>{{ $item->Email }}</td>
                     <td>{{ $item->Phone }}</td>
                     <td>{{ $item->roomSettings->Date }}</td>
                     <td>{{ $item->roomSettings->TimeStart }}</td>
                     <td>{{ $item->roomSettings->TimeEnd }}</td>
-                    <td><a href="{{ route('Booking.edit',$item->id) }}" class="btn btn-outline-warning ion-edit mb-2">Edit</a>
-                      <form action="{{ route('Booking.destroy',$item->id) }}" method="post" classs="d-inline" onsubmit="return confirm('Are you sure want to delete?')">
+                    <td>
+                      <form action="{{ route('Booking.destroy',[$item->id ,'idRoom' => $item->room_id]) }}" method="post" classs="d-inline" onsubmit="return confirm('Are you sure want to delete?')">
                           @method('delete')
                           @csrf
                           <button class="btn btn-outline-danger ion-trash-b" style="display:block">Delete</button>

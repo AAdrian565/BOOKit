@@ -16,29 +16,38 @@
               </div>
               <h4>Add Maintenance</h4>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <form id="product_form" action="{{ route('Maintenance.store') }}" method="POST" enctype="multipart/form-data">
-                  @csrf
-                  <table class="table" id="table">
-                      <tr>
-                          <th>Name</th>
-                          <th style="width:5%">Action</th>
-                      </tr>
-                      <tr>
-                          <td>
-                              <input type="text" name="inputs[0][Name]" placeholder="Enter Maintenance Name" class="form-control">
-                          </td>
-                      </tr>
-                  </table>
-               <button type="submit" class="btn btn-primary bi bi-save">Save</button>
-               <button type="button" name="add" id="add" class="btn btn-success bi bi-plus-circle">Add More</button>
-               <a href="{{ route('Maintenance.index') }}" class="btn btn-warning bi bi-box-arrow-left">Return</a>
-              </form>
+            <div class="card">
+              <div class="card-body">
+                  <form action="{{ route('Maintenance.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                      <div class="mb-3">
+                          <label class="mb-2 font-weight-bold">Rooms</label>
+                          <select class="form-select" aria-label="Default select example" name="Rooms">
+                              <option selected>Select the Room...</option>
+                              @foreach ($data as $index => $item)
+                                  <option value="{{ $item->id }}">Room {{ $item->roomStatus->Name }} | Time: {{ $item->TimeStart }} - {{ $item->TimeEnd }} | Date: {{ $item->Date }}</option>
+                              @endforeach
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="mb-2 font-weight-bold">Staff</label>
+                        <select class="form-select" aria-label="Default select example" name="Staff_id">
+                            <option selected>Select the Staff...</option>
+                            @foreach ($data2 as $index => $item)
+                                <option value="{{ $item->id }}">{{ $item->Name }}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="mb-2">Description</label>
+                        <textarea class="form-control" rows="5" name="Description"></textarea>
+                      </div>
+                        <button type="submit" class="btn btn-primary bi bi-save"> Submit</button>
+                        <a href="{{ route('Maintenance.index') }}" class="btn btn-warning bi bi-box-arrow-left"> Return</a>
+                   </form>
+                <div class="statistic-details mt-sm-4">
+                </div>
               </div>
-              <div class="statistic-details mt-sm-4">
-              </div>
-            </div>
           </div>
         </div>
       </div>

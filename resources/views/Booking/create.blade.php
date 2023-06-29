@@ -24,7 +24,7 @@
                         <select class="form-select" aria-label="Default select example" name="Rooms">
                             <option selected>Select the Room...</option>
                             @foreach ($data as $index => $item)
-                                <option value="{{ $item->id }}">{{ $item->Name }}</option>
+                                <option value="{{ $item->id }}">Room {{ $item->roomStatus->Name }} | Time: {{ $item->TimeStart }} - {{ $item->TimeEnd }} | Date: {{ $item->Date }}</option>
                             @endforeach
                         </select>
                     </div>

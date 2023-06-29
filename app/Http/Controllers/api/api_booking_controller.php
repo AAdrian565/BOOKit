@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Models\room;
+use App\Http\Controllers\Controller;
 use App\Models\booking;
-use App\Models\roomStatus;
+use App\Models\room;
 use Illuminate\Http\Request;
 
-class booking_Controller extends Controller
+class api_booking_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,7 @@ class booking_Controller extends Controller
     {
         $data = booking::all();
 
-        // if($request->RoomNumber){
-        //     $data = booking::with('booking')->where('Room_id',$request->RoomNumber)->get();
-        // }
-
-        return view('Booking.index',compact('data'));
+        return response($data);
     }
 
     /**
@@ -28,8 +24,7 @@ class booking_Controller extends Controller
      */
     public function create()
     {
-        $data = room::all();
-        return view('Booking.create',compact('data'));
+        //
     }
 
     /**
@@ -37,14 +32,6 @@ class booking_Controller extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'Rooms' => 'required',
-            'Name' => 'required',
-            'Email' => 'required',
-            'Phone' => 'required',
-        ],
-        );
-
         $newBooking = new booking();
         $newBooking->Room_id = $request->Rooms;
         $newBooking->Name = $request->Name;
@@ -56,7 +43,7 @@ class booking_Controller extends Controller
         $Room->Status_id = 1;
         $Room->save(); 
 
-        return redirect()->route('Booking.index');
+        return response('Succesfully Add Booking');
     }
 
     /**
@@ -72,13 +59,12 @@ class booking_Controller extends Controller
      */
     public function destroy(string $id, Request $request)
     {
-        //
         $Room = booking::findOrFail($id);
         $Room->delete();
 
         $RoomSettings = room::findOrFail($request->idRoom);
         $RoomSettings->delete();
 
-        return redirect()->route('Booking.index');
+        return response('Succesfully Delete Booking');
     }
 }

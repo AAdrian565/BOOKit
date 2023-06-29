@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class staff extends Model
 {
     use HasFactory;
+
+    public function maintenanced()
+    {
+        return $this->hasMany(maintenance::class);
+    }
 }

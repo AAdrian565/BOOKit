@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Models\roomStatus;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ApiMaintenance\AddMaintenanceRequest;
+use App\Http\Requests\ApiMaintenance\DeleteMaintenanceRequest;
+use App\Http\Requests\ApiMaintenance\EditMaintenanceRequest;
 use App\Models\maintenance;
 use App\Models\room;
-use App\Models\staff;
 use Illuminate\Http\Request;
 
-class maintenance_Controller extends Controller
+class api_maintenance_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,7 @@ class maintenance_Controller extends Controller
     public function index()
     {
         $data = maintenance::all();
-        return view('Maintenance.index',compact('data'));
+        return response($data);
     }
 
     /**
@@ -24,23 +26,13 @@ class maintenance_Controller extends Controller
      */
     public function create()
     {
-        $data = room::all();
-        $data2 = staff::all();
-        return view('Maintenance.create',compact('data', 'data2'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddMaintenanceRequest $request)
     {
-        $request->validate([
-            'Rooms' => 'required',
-            'Staff_id' => 'required',
-            'Description' => 'required',
-        ],
-        );
-
         $newMaintenance = new maintenance();
         $newMaintenance->Room_id = $request->Rooms;
         $newMaintenance->Staff_id = $request->Staff_id;
@@ -51,7 +43,7 @@ class maintenance_Controller extends Controller
         $Room->Status_id = 2;
         $Room->save();
 
-        return redirect()->route('Maintenance.index');
+        return response('Successfully Add Maintenance Schedule');
     }
 
     /**
@@ -67,26 +59,14 @@ class maintenance_Controller extends Controller
      */
     public function edit(string $id)
     {
-        $data = room::all();
-        $data2 = staff::all();
-        $data3 = maintenance::findOrFail($id);
-        return view('Maintenance.edit',compact('data', 'data2','data3'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EditMaintenanceRequest $request, string $id)
     {
-
-        $request->validate([
-            'Room_id' => 'required',
-            'Staff_id' => 'required',
-            'Description' => 'required',
-        ],
-        );
-
-
         $Room = room::findOrFail($request->idRoom);
         $Room->Status_id = 3;
         $Room->save();
@@ -101,7 +81,7 @@ class maintenance_Controller extends Controller
         $Room->Status_id = 2;
         $Room->save();
 
-        return redirect()->route('Maintenance.index');
+        return response('Sucessfully update Maintenance Schedule');
     }
 
     /**
@@ -115,6 +95,6 @@ class maintenance_Controller extends Controller
         $RoomSettings = room::findOrFail($request->idRoom);
         $RoomSettings->delete();
 
-        return redirect()->route('Maintenance.index');
+        return response('Successfully Delete maintenance Schedule');
     }
 }

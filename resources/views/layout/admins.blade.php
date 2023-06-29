@@ -277,6 +277,5 @@
     </script>
     <script src="{{ URL::asset('assets/js/scripts.js') }}"></script>
     <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/demo.js') }}"></script>
 </body>
 </html>

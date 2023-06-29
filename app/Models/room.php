@@ -31,5 +31,9 @@ class room extends Model
         return $this->hasOne(booking::class);
     }
 
+    public function maintenances()
+    {
+        return $this->hasMany(maintenance::class);
+    }
 
 }

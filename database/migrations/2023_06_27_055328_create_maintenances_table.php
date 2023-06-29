@@ -18,8 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('Staff_id')->nullable();
             $table->foreign('Staff_id')->references('id')->on('staff');
             $table->longText('Description');
-            $table->string('DateStart');
-		    $table->string('DateEnd');
             $table->timestamps();
         });
     }

@@ -24,15 +24,23 @@
                 <table class="table table-bordered">
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Staff</th>
+                    <th>Description</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
                     <th style="width:17%">Action</th>
                   </tr>
                   @foreach ($data as $index => $item )
                   <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->roomSet->id }}</td>
+                    <td>{{ $item->staffs->Name }}</td>
+                    <td>{{ $item->Description }}</td>
+                    <td>{{ $item->roomSet->TimeStart }}</td>
+                    <td>{{ $item->roomSet->TimeEnd }}</td>
                     <td><a href="{{ route('Maintenance.edit',$item->id) }}" class="btn btn-outline-warning ion-edit mb-2">Edit</a>
-                      <form action="{{ route('Maintenance.destroy',$item->id) }}" method="post" classs="d-inline" onsubmit="return confirm('Are you sure want to delete?')">
+                      <form action="{{ route('Maintenance.destroy',[$item->id ,'idRoom' => $item->Room_id]) }}" method="post" classs="d-inline" onsubmit="return confirm('Are you sure want to delete?')">
                           @method('delete')
                           @csrf
                           <button class="btn btn-outline-danger ion-trash-b" style="display:block">Delete</button>
