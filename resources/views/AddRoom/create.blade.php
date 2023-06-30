@@ -19,12 +19,11 @@
             <div class="card-body">
                 <form action="{{ route('AddRoom.store') }}" method="POST" enctype="multipart/form-data">
                   @csrf
-                    <div class="mb-3">
-                        <label class="mb-2 font-weight-bold">Rooms</label>
-                        <select class="form-select" aria-label="Default select example" name="Rooms">
+                    <div class="mb-3 custom-select">
+                        <select class="form-select custom-select" aria-label="Default select example" name="Rooms">
                             <option selected>Select the Room...</option>
                             @foreach ($data as $index => $item)
-                                <option value="{{ $item->id }}">{{ $item->Name }}</option>
+                                <option class="dropdown-item" value="{{ $item->id }}">{{ $item->Name }}</option>
                             @endforeach
                         </select>
                     </div>

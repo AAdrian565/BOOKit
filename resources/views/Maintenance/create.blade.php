@@ -20,8 +20,7 @@
               <div class="card-body">
                   <form action="{{ route('Maintenance.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                      <div class="mb-3">
-                          <label class="mb-2 font-weight-bold">Rooms</label>
+                      <div class="mb-3 custom-select">
                           <select class="form-select" aria-label="Default select example" name="Rooms">
                               <option selected>Select the Room...</option>
                               @foreach ($data as $index => $item)
@@ -29,8 +28,7 @@
                               @endforeach
                           </select>
                       </div>
-                      <div class="mb-3">
-                        <label class="mb-2 font-weight-bold">Staff</label>
+                      <div class="mb-3  custom-select">
                         <select class="form-select" aria-label="Default select example" name="Staff_id">
                             <option selected>Select the Staff...</option>
                             @foreach ($data2 as $index => $item)
@@ -53,26 +51,4 @@
       </div>
     </section>
   </div>
-
-  <script>
-    var i = 0;
-    $('#add').click(function(){
-        i++;
-        $('#table').append(
-            '<tr>\
-                <td>\
-                    <input type="text" name="inputs['+i+'][Name]" placeholder="Enter Maintenance Name" class="form-control">\
-                </td>\
-                <td>\
-                    <button type="button" style="font-size:20px" class="px-3 btn ion-trash-b remove-table-row"></button>\
-                </td>\
-            </tr>'
-        );
-    });
-
-
-    $(document).on('click','.remove-table-row',function(){
-        $(this).parents('tr').remove();
-    });
-</script>
-@endsection
+    @endsection
