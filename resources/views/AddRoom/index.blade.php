@@ -56,9 +56,9 @@
                     <td>{{ $item->Date }}</td>
                     <td>{{ $item->TimeStart }}</td>
                     <td>{{ $item->TimeEnd }}</td>
-                    @if($item->category->id == 1)
+                    @if($item->category->name == "Booked")
                       <td><div class="badge badge-success">{{ $item->category->name}}</div></td>
-                    @elseif ($item->category->id == 2)
+                    @elseif ($item->category->name == "Maintenance")
                       <td><div class="badge badge-danger">{{ $item->category->name}}</div></td>
                     @else
                       <td><div class="badge badge-secondary">{{ $item->category->name}}</div></td>

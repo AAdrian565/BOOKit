@@ -102,7 +102,7 @@
 
     <script src="{{ ('assets/modules/chart.min.js') }}"></script>
     <script src="{{ ('assets/modules/summernote/summernote-lite.js') }}"></script>
-  
+
     <script src="{{ ('assets/js/scripts.js') }}"></script>
     <script src="{{ ('assets/js/custom.js') }}"></script>
     {{-- <script src="{{ ('assets/js/demo.js') }}"></script> --}}

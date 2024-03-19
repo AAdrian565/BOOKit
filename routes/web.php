@@ -58,4 +58,3 @@ Route::resource('admin/Booking', App\Http\Controllers\booking_Controller::class)
 Route::resource('admin/Staff', App\Http\Controllers\staff_Controller::class);
 Route::resource('admin/Maintenance', App\Http\Controllers\maintenance_Controller::class);
 
-Route::get('test',[Test::class,'index']);
